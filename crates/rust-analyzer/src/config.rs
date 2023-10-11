@@ -488,6 +488,9 @@ config_data! {
         /// set to a path relative to the workspace to use that path.
         rust_analyzerTargetDir: Option<TargetDirectory> = "null",
 
+        /// Only check the current crate
+        checkSingleCrate_enable: bool = "false",
+
         /// Path to the Cargo.toml of the rust compiler workspace, for usage in rustc_private
         /// projects, or "discover" to try to automatically find it if the `rustc-dev` component
         /// is installed.
@@ -1345,7 +1348,15 @@ impl Config {
                 extra_env: self.check_extra_env(),
                 ansi_color_output: self.color_diagnostic_output(),
                 target_dir: self.target_dir_from_config(),
+                single_crate: self.get_crate_for_check(),
             },
+        }
+    }
+
+    fn get_crate_for_check(&self) -> Option<AbsPathBuf> {
+        match self.data.checkSingleCrate_enable {
+            true => Some(self.root_path().clone()),
+            false => None,
         }
     }
 

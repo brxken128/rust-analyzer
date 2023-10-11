@@ -51,6 +51,7 @@ pub enum FlycheckConfig {
         extra_env: FxHashMap<String, String>,
         ansi_color_output: bool,
         target_dir: Option<PathBuf>,
+        single_crate: Option<AbsPathBuf>,
     },
     CustomCommand {
         command: String,
@@ -310,6 +311,7 @@ impl FlycheckActor {
                 extra_env,
                 ansi_color_output,
                 target_dir,
+                single_crate,
             } => {
                 let mut cmd = Command::new(toolchain::cargo());
                 cmd.arg(command);
@@ -342,9 +344,19 @@ impl FlycheckActor {
                         cmd.arg(features.join(" "));
                     }
                 }
+
                 if let Some(target_dir) = target_dir {
                     cmd.arg("--target-dir").arg(target_dir);
                 }
+
+                if let Some(single_crate) = single_crate {
+                    cmd.arg("--manifest-path");
+                    cmd.arg(single_crate.join("Cargo.toml").as_os_str());
+                    cmd.current_dir(single_crate);
+                } else {
+                    cmd.current_dir(&self.root);
+                }
+
                 cmd.envs(extra_env);
                 (cmd, extra_args)
             }

@@ -489,7 +489,7 @@ config_data! {
         rust_analyzerTargetDir: Option<TargetDirectory> = "null",
 
         /// Only check the current crate
-        checkSingleCrate_enable: bool = "false",
+        checkCurrentCrate: bool = "true",
 
         /// Path to the Cargo.toml of the rust compiler workspace, for usage in rustc_private
         /// projects, or "discover" to try to automatically find it if the `rustc-dev` component

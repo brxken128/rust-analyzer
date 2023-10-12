@@ -603,6 +603,11 @@
                     "default": {},
                     "type": "object"
                 },
+                "rust-analyzer.cargo.check.currentCrate": {
+                    "markdownDescription": "Only check the currently open crate (based on the root path of your editor).",
+                    "default": true,
+                    "type": "boolean"
+                },
                 "rust-analyzer.cargo.features": {
                     "markdownDescription": "List of features to activate.\n\nSet this to `\"all\"` to pass `--all-features` to cargo.",
                     "default": [],
@@ -786,11 +791,6 @@
                             }
                         }
                     ]
-                },
-                "rust-analyzer.check.currentCrate": {
-                    "markdownDescription": "Only check the currently open crate (based on the root path of your editor).",
-                    "default": true,
-                    "type": "boolean"
                 },
                 "rust-analyzer.completion.autoimport.enable": {
                     "markdownDescription": "Toggles the additional completions that automatically add imports when completed.\nNote that your client must specify the `additionalTextEdits` LSP client capability to truly have this feature enabled.",

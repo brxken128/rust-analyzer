@@ -1354,7 +1354,7 @@ impl Config {
     }
 
     fn get_crate_for_check(&self) -> Option<AbsPathBuf> {
-        match self.data.checkSingleCrate_enable {
+        match self.data.checkCurrentCrate {
             true => Some(self.root_path().clone()),
             false => None,
         }

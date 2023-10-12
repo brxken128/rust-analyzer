@@ -603,7 +603,7 @@
                     "default": {},
                     "type": "object"
                 },
-                "rust-analyzer.cargo.check.currentCrate": {
+                "rust-analyzer.cargo.checkCurrentCrate": {
                     "markdownDescription": "Only check the currently open crate (based on the root path of your editor).",
                     "default": true,
                     "type": "boolean"

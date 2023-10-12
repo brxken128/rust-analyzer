@@ -1,4 +1,4 @@
-# rust-analyzer
+# rust-analyzer (modified by @brxken128)
 
 This extension provides support for the [Rust programming language](https://www.rust-lang.org/).
 It is recommended over and replaces `rust-lang.rust`.
